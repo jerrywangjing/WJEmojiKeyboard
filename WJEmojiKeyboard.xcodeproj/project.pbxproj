@@ -265,14 +265,13 @@
 		C42251B01E0C01F900E45388 /* WJEmojiKeyboard */ = {
 			isa = PBXGroup;
 			children = (
+				C4CACBEC1E14E1AA005EF0E4 /* WJEmojiKeyboard */,
 				C42251E41E0C021C00E45388 /* UIView+WJExtension.h */,
 				C42251E51E0C021C00E45388 /* UIView+WJExtension.m */,
 				C42251B41E0C01F900E45388 /* AppDelegate.h */,
 				C42251B51E0C01F900E45388 /* AppDelegate.m */,
 				C42251B71E0C01F900E45388 /* ViewController.h */,
 				C42251B81E0C01F900E45388 /* ViewController.m */,
-				C42251E71E0C022900E45388 /* EmojiKeyboardView.h */,
-				C42251E81E0C022900E45388 /* EmojiKeyboardView.m */,
 				C42251BA1E0C01F900E45388 /* Main.storyboard */,
 				C42251BD1E0C01F900E45388 /* Assets.xcassets */,
 				C42251BF1E0C01F900E45388 /* LaunchScreen.storyboard */,
@@ -393,6 +392,15 @@
 				C422523B1E0C028A00E45388 /* [9].png */,
 			);
 			path = "静态表情";
+			sourceTree = "<group>";
+		};
+		C4CACBEC1E14E1AA005EF0E4 /* WJEmojiKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				C42251E71E0C022900E45388 /* EmojiKeyboardView.h */,
+				C42251E81E0C022900E45388 /* EmojiKeyboardView.m */,
+			);
+			name = WJEmojiKeyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -845,6 +853,7 @@
 				C42251DD1E0C01F900E45388 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C42251DE1E0C01F900E45388 /* Build configuration list for PBXNativeTarget "WJEmojiKeyboardTests" */ = {
 			isa = XCConfigurationList;
@@ -853,6 +862,7 @@
 				C42251E01E0C01F900E45388 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C42251E11E0C01F900E45388 /* Build configuration list for PBXNativeTarget "WJEmojiKeyboardUITests" */ = {
 			isa = XCConfigurationList;
@@ -861,6 +871,7 @@
 				C42251E31E0C01F900E45388 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

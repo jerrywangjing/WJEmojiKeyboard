@@ -23,8 +23,7 @@
 
 #define WidthGap 18 // 可调节布局间距
 #define HeightGap 20
-#define BtnW 30
-#define BtnH 30
+#define BtnWH 30*WIDTH_RATE  // 宽高相等
 
 #define MaxCol 7
 #define MaxRow 3
@@ -96,7 +95,7 @@
     [self bringSubviewToFront:_pageControl];
     
     // 添加toolbar
-    UIView * toolbar = [[UIView alloc] initWithFrame:CGRectMake(0, self.height-ToolBarH, self.width, ToolBarH)];
+    UIView * toolbar = [[UIView alloc] initWithFrame:CGRectMake(0, EmojiViewH, self.width, ToolBarH)];
     _toolbar = toolbar;
     _toolbar.backgroundColor = [UIColor whiteColor];
     [self addSubview:_toolbar];
@@ -137,14 +136,11 @@
 -(void)addBtnsWithPageNum:(NSInteger)pageNum{
     
     // 添加按钮
-
-    CGFloat widthGap = WidthGap * WIDTH_RATE; //按钮之间的横向间隙
-    CGFloat heightGap = HeightGap * HEIGHT_RATE; //按钮之间的纵向间隙
     
-    CGFloat btnW = BtnW * WIDTH_RATE;
-    CGFloat btnH = BtnH * HEIGHT_RATE;
-    CGFloat widthMargin = (self.width - (MaxCol*btnW + (MaxCol-1) * widthGap))/2; // 横向边距
-    CGFloat heightMargin = (EmojiViewH - (MaxRow*btnH + (MaxRow-1) * heightGap))/2; // 纵向边距
+    CGFloat btnW = BtnWH;
+    CGFloat btnH = BtnWH;
+    CGFloat widthMargin = (self.width - (MaxCol*btnW + (MaxCol-1) * WidthGap))/2; // 横向边距
+    CGFloat heightMargin = (EmojiViewH - (MaxRow*btnH + (MaxRow-1) * HeightGap))/2; // 纵向边距
 
     NSInteger count = _btnsCount - (pageNum * NumberOfSinglePage);
     NSInteger indexCount;
@@ -178,7 +174,7 @@
         // 设置图片frame
         
         btn.x = col * (btnW + WidthGap) + widthMargin + pageNum * self.width;
-        btn.y = row * (btnH + heightGap) + heightMargin;
+        btn.y = row * (btnH + HeightGap) + heightMargin;
         
         btn.width = btnW;
         btn.height = btnH;
@@ -191,7 +187,7 @@
     if (indexCount <= (NumberOfSinglePage-1)) {
         UIButton * btn  = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.x = (MaxCol-1) * (btnW + WidthGap) + widthMargin + pageNum * self.width;
-        btn.y = (MaxRow-1) * (btnH + heightGap) + heightMargin;
+        btn.y = (MaxRow-1) * (btnH + HeightGap) + heightMargin;
         
         btn.width = btnW;
         btn.height = btnH;
