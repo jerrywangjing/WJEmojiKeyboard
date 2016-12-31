@@ -77,9 +77,12 @@
     contentScrollView.showsVerticalScrollIndicator = NO;
     contentScrollView.showsHorizontalScrollIndicator = NO;
     
-    for (int i = 0; i < pageCount; i++) {
-        [self addBtnsWithPageNum:i];
-    }
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        for (int i = 0; i < pageCount; i++) {
+            [self addBtnsWithPageNum:i];
+        }
+    });
+    
     
     [self addSubview:contentScrollView];
     
@@ -163,13 +166,6 @@
         int row = i / MaxCol;
         //注意：由于表情中有删除按钮，取表情按钮时需要减个页码号才正确
         NSInteger index = i + (pageNum * NumberOfSinglePage - pageNum);
-
-        if (i== NumberOfSinglePage-1) {
-            [btn setImage:[UIImage imageNamed:@"expression_delete"] forState:UIControlStateNormal];
-        }else{
-        
-            [btn setImage:[UIImage imageNamed:[NSString stringWithFormat:@"[%ld]",index+1]] forState:UIControlStateNormal];
-        }
         
         // 设置图片frame
         
@@ -182,6 +178,16 @@
         
         [btn addTarget:self action:@selector(emojiBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [_contentScrollView addSubview:btn];
+        
+        // 主线程处理UI
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (i== NumberOfSinglePage-1) {
+                [btn setImage:[UIImage imageNamed:@"expression_delete"] forState:UIControlStateNormal];
+            }else{
+                
+                [btn setImage:[UIImage imageNamed:[NSString stringWithFormat:@"[%ld]",index+1]] forState:UIControlStateNormal];
+            }
+        });
     }
     // 如果单页按钮数量少于最大容纳数时，任然需要添加删除按钮
     if (indexCount <= (NumberOfSinglePage-1)) {
@@ -192,10 +198,13 @@
         btn.width = btnW;
         btn.height = btnH;
         btn.tag = ((NumberOfSinglePage-1) + pageNum*(NumberOfSinglePage-1));
-        [btn setImage:[UIImage imageNamed:@"expression_delete"] forState:UIControlStateNormal];
         
         [btn addTarget:self action:@selector(emojiBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [_contentScrollView addSubview:btn];
+            // 主线程处理UI
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [btn setImage:[UIImage imageNamed:@"expression_delete"] forState:UIControlStateNormal];
+        });
     }
 }
 
