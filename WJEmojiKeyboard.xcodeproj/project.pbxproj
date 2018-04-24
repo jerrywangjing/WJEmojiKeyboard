@@ -276,7 +276,6 @@
 				C42251BD1E0C01F900E45388 /* Assets.xcassets */,
 				C42251BF1E0C01F900E45388 /* LaunchScreen.storyboard */,
 				C4FBA173208EDA7300BFF133 /* Info.plist */,
-				C4FBA120208EDA7300BFF133 /* Resource */,
 				C4FBA171208EDA7300BFF133 /* Supporting Files */,
 			);
 			path = WJEmojiKeyboard;
@@ -405,6 +404,7 @@
 		C4FBA174208EDA7300BFF133 /* WJEmojiKeyboard */ = {
 			isa = PBXGroup;
 			children = (
+				C4FBA120208EDA7300BFF133 /* Resource */,
 				C4FBA176208EDA7300BFF133 /* EmojiKeyboardView.h */,
 				C4FBA175208EDA7300BFF133 /* EmojiKeyboardView.m */,
 			);

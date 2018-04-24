@@ -11,18 +11,34 @@
 ### 使用
 
 ```objective-c
-CGRect frame = CGRectMake(0, SCREEN_HEIGHT-ViewH, SCREEN_WIDTH, ViewH);
+-(void)viewDidLoad{
+    
+    [super viewDidLoad];
+    
+    CGRect frame = CGRectMake(0, self.view.height-EmojiKeyboardH, self.view.width, EmojiKeyboardH);
+    _emojiKeyboard = [[EmojiKeyboardView alloc] initWithFrame:frame];
+    _emojiKeyboard.delegate = self;
+    
+    [self.view addSubview:_emojiKeyboard];
+}
 
-_scrollBtnView = [[WJScrollButtonView alloc] initWithFrame:frame dataSource:self.dataSource];
-    
-_scrollBtnView.LineSpacing = 10;		// 设置行间距
-_scrollBtnView.columnsSpacing = 10;		// 设置列间距
-    
-_scrollBtnView.didClickBtn = ^(UIButton *btn) {	// 回调block
-    NSLog(@"click:%ld",btn.tag);
-};
-    
-[self.view addSubview:_scrollBtnView];
+#pragma mark - emojiKeyboard delegate
+
+- (void)wjEmojiKeyboard:(EmojiKeyboardView *)emojiKeyboard didClickSendBtn:(UIButton *)sendBtn{
+    NSLog(@"发送消息");
+}
+
+- (void)wjEmojiKeyboard:(EmojiKeyboardView *)emojiKeyboard didClickEmojiBtn:(UIButton *)emojiBtn{
+    NSLog(@"点击表情-%ld",emojiBtn.tag);
+}
+
+- (void)wjEmojiKeyboard:(EmojiKeyboardView *)emojiKeyboard didClickDeleteBtn:(UIButton *)deleteBtn{
+    NSLog(@"删除表情");
+}
+
+- (void)wjEmojiKeyboard:(EmojiKeyboardView *)emojiKeyboard didClickEmojiItem:(UIButton *)emojiItem{
+    NSLog(@"选择表情包-%ld",emojiItem.tag);
+}
 ```
 
 ### 功能图示

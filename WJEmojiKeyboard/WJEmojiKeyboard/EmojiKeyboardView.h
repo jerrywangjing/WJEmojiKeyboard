@@ -52,8 +52,20 @@
 
 @interface EmojiKeyboardView : UIView
 
-@property (nonatomic,weak) UITextView * inputView;
-@property (nonatomic,weak) UIButton * sendBtn;
+/**
+ 背景颜色
+ */
+@property (nonatomic,strong) UIColor *backgroundColor;
+
+/**
+ 行间距，上下间隙,两排按钮水平方向之间的距离，默认：20
+ */
+@property (nonatomic,assign) CGFloat LineSpacing;
+
+/**
+ 列间距，左右间隙,上下按钮垂直方向之间的距离，默认：18
+ */
+@property (nonatomic,assign) CGFloat columnsSpacing;
 
 @property (nonatomic,weak)id<EmojiKeyboardViewDelegate>delegate;
 

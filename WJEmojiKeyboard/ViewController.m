@@ -28,7 +28,8 @@
     CGRect frame = CGRectMake(0, self.view.height-EmojiKeyboardH, self.view.width, EmojiKeyboardH);
     _emojiKeyboard = [[EmojiKeyboardView alloc] initWithFrame:frame];
     _emojiKeyboard.delegate = self;
-    
+//    _emojiKeyboard.LineSpacing = 15;
+//    _emojiKeyboard.columnsSpacing = 13;
     [self.view addSubview:_emojiKeyboard];
 }
 
