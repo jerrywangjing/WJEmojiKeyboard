@@ -12,33 +12,33 @@
 #define BGColor [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0]
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
-#define NavBarH 64
-#define TabBarH 44
-#define WIDTH_RATE (SCREEN_WIDTH/375)   // 屏幕宽度系数（以4.7英寸为基准）
+
+#define WIDTH_RATE (SCREEN_WIDTH/375)           // 屏幕宽度系数（以4.7英寸为基准）
 #define HEIGHT_RATE (SCREEN_HEIGHT/667)
 
 #define EmojiViewH 187.5
 #define ToolBarH 37.5
 #define ToolBtnCount 7
 
-#define WidthGap 18 // 可调节布局间距
+#define WidthGap 18                             // 可调节布局间距
 #define HeightGap 20
-#define BtnWH 30*WIDTH_RATE  // 宽高相等
+#define BtnWH 30*WIDTH_RATE                     // 宽高相等
 
 #define MaxCol 7
 #define MaxRow 3
-#define NumberOfSinglePage 21 // 一个页面可容纳的最多按钮数
+#define NumberOfSinglePage 21                   // 一个页面可容纳的最多按钮数
 #define PageControlH 15
 
+
 @interface EmojiKeyboardView ()<UIScrollViewDelegate>
+
 @property (nonatomic,weak) UIScrollView * contentScrollView;
 @property (nonatomic,weak) UIPageControl * pageControl;
 @property (nonatomic,weak) UIView * toolbar;
+
 @property (nonatomic,assign) NSInteger btnsCount;
 @property (nonatomic,weak) UIButton * lastBtn;
-
-/// 子视图数据
-@property (nonatomic,strong) NSArray * dataArr;
+@property (nonatomic,strong) NSArray * dataArr;             // 子视图数据
 
 @end
 
@@ -189,6 +189,7 @@
             }
         });
     }
+    
     // 如果单页按钮数量少于最大容纳数时，任然需要添加删除按钮
     if (indexCount <= (NumberOfSinglePage-1)) {
         UIButton * btn  = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -217,14 +218,14 @@
         //NSLog(@"删除:%ld",btn.tag);
         [self.inputView deleteBackward];
 
-        if ([self.delegate respondsToSelector:@selector(deleteBtnDicClick:)]) {
-            [self.delegate deleteBtnDicClick:btn];
+        if ([self.delegate respondsToSelector:@selector(wjEmojiKeyboard:didClickDeleteBtn:)]) {
+            [self.delegate wjEmojiKeyboard:self didClickDeleteBtn:btn];
         }
     }else{
     
         [self appendEmojiToInputViewWithTag:btn.tag];
-        if ([self.delegate respondsToSelector:@selector(emojiBtnDidClick:)]) {
-            [self.delegate emojiBtnDidClick:btn];
+        if ([self.delegate respondsToSelector:@selector(wjEmojiKeyboard:didClickEmojiBtn:)]) {
+            [self.delegate wjEmojiKeyboard:self didClickEmojiBtn:btn];
         }
         //NSLog(@"点击表情:%ld",btn.tag);
     }
@@ -243,18 +244,17 @@
     // 处理点击事件
     if (btn.tag == ToolBtnCount-1) {
         //NSLog(@"发送消息");
-        if ([self.delegate respondsToSelector:@selector(sendBtnDicClick:)]) {
-            [self.delegate sendBtnDicClick:btn];
+        if ([self.delegate respondsToSelector:@selector(wjEmojiKeyboard:didClickSendBtn:)]) {
+            [self.delegate wjEmojiKeyboard:self didClickSendBtn:btn];
         }
         
     }else{
     
-        if ([self.delegate respondsToSelector:@selector(emojiItemBtnClick:)]) {
-            [self.delegate emojiItemBtnClick:btn];
+        if ([self.delegate respondsToSelector:@selector(wjEmojiKeyboard:didClickEmojiItem:)]) {
+            [self.delegate wjEmojiKeyboard:self didClickEmojiItem:btn];
         }
         //NSLog(@"表情包:%ld",btn.tag);
     }
-    
 }
 
 // 映射表情文字

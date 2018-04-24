@@ -13,45 +13,40 @@
 #define EmojiKeyboardH 225
 
 @interface ViewController()<EmojiKeyboardViewDelegate>
+
 @property (nonatomic,strong)EmojiKeyboardView * emojiKeyboard;
+
 @end
 
 @implementation ViewController
 
--(EmojiKeyboardView *)emojiKeyboard{
-    
-    if (!_emojiKeyboard) {
-        _emojiKeyboard = [[EmojiKeyboardView alloc] initWithFrame:CGRectMake(0, self.view.height-EmojiKeyboardH, self.view.width, EmojiKeyboardH)];
-        _emojiKeyboard.delegate = self;
-        
-    }
-    return _emojiKeyboard;
-}
 -(void)viewDidLoad{
     
     [super viewDidLoad];
     
-    [self.view addSubview:self.emojiKeyboard];
+    
+    CGRect frame = CGRectMake(0, self.view.height-EmojiKeyboardH, self.view.width, EmojiKeyboardH);
+    _emojiKeyboard = [[EmojiKeyboardView alloc] initWithFrame:frame];
+    _emojiKeyboard.delegate = self;
+    
+    [self.view addSubview:_emojiKeyboard];
 }
 
 #pragma mark - emojiKeyboard delegate
 
--(void)sendBtnDicClick:(UIButton *)btn{
-
+- (void)wjEmojiKeyboard:(EmojiKeyboardView *)emojiKeyboard didClickSendBtn:(UIButton *)sendBtn{
     NSLog(@"发送消息");
 }
 
--(void)emojiBtnDidClick:(UIButton *)btn{
-
-    NSLog(@"点击表情-%ld",btn.tag);
-}
--(void)emojiItemBtnClick:(UIButton *)btn{
-
-    NSLog(@"选择表情-%ld",btn.tag);
+- (void)wjEmojiKeyboard:(EmojiKeyboardView *)emojiKeyboard didClickEmojiBtn:(UIButton *)emojiBtn{
+    NSLog(@"点击表情-%ld",emojiBtn.tag);
 }
 
--(void)deleteBtnDicClick:(UIButton *)btn{
-
+- (void)wjEmojiKeyboard:(EmojiKeyboardView *)emojiKeyboard didClickDeleteBtn:(UIButton *)deleteBtn{
     NSLog(@"删除表情");
+}
+
+- (void)wjEmojiKeyboard:(EmojiKeyboardView *)emojiKeyboard didClickEmojiItem:(UIButton *)emojiItem{
+    NSLog(@"选择表情包-%ld",emojiItem.tag);
 }
 @end
