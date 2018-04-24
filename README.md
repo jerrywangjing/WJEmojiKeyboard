@@ -11,6 +11,9 @@
 ### 使用
 
 ```objective-c
+
+#pragma mark - init
+
 -(void)viewDidLoad{
     
     [super viewDidLoad];
