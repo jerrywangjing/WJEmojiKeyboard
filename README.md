@@ -18,8 +18,10 @@
     CGRect frame = CGRectMake(0, self.view.height-EmojiKeyboardH, self.view.width, EmojiKeyboardH);
     _emojiKeyboard = [[EmojiKeyboardView alloc] initWithFrame:frame];
     _emojiKeyboard.delegate = self;
+    _emojiKeyboard.LineSpacing = 20;        // 修改行间距
+    _emojiKeyboard.columnsSpacing = 18;     // 修改列间距
     
-    [self.view addSubview:_emojiKeyboard];
+   [self.view addSubview:_emojiKeyboard];
 }
 
 #pragma mark - emojiKeyboard delegate
